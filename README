@@ -1,1 +1,12 @@
 Simple script im using to clean up zone files for use with Bind
+
+
+BUGS:
+
+sub zones are created with out NS records...
+	they should be the same as the main zones
+	would need to loop through the main data looking for type=NS
+	Maybe i should be sticking then in a header  data tree instead
+
+When  trying to created  a sub zone if the sub zone has a CNAME pointing to it 
+	we can not create it, as you can not have a CNAME as the source of a zone
