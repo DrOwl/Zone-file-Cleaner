@@ -1,0 +1,4 @@
+$TTL 86400      ; 1 day
+@               IN      SOA     alice.yoursoa.com. hostmaster.yoursoa.com. (
+                [YYYYMMDDii] 10800 3600 604800 86400 )
+$ORIGIN @
