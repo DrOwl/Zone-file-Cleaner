@@ -14,6 +14,7 @@ my %last_sds ;
 my $last_sd ;
 my $header_template_file = "templates/zoneheader" ;
 my $header_template = "" ;
+my $zone_subfix = ".zone.db" ;
 
 open (HEADER_TEMPLATE_FILE, $header_template_file) or die qq(Could not open header_template_file $header_template_file: $!);
  while (<HEADER_TEMPLATE_FILE>) {
@@ -29,7 +30,7 @@ my @records_types = ("a", "cname", "srv", "mx", "ns", "ptr", "txt", "hinfo", "rp
 
 # chose which sub domains we want to brake out in to seperate zone files
 # we could probally have this automated eg and sub with more the X names get auto broken out
-# but manualy seems nicer for now.
+# but manualy seems nicer for now. also this should be a Cl option time to bust out getOps long
 my @brakeouts = ("subzone");
 
 
@@ -99,16 +100,17 @@ sub tab_out_string {
 print "Generating Hash content\n";
 
 my $new_zone ;
-open($new_zone, '>','generated_zones/' . $origin) or die "could not open zone file for w";
+open($new_zone, '>','generated_zones/' . $origin . $zone_subfix ) or die "could not open zone file for w";
 print $new_zone "$header_template" ;
 foreach my $k (sort keys %last_sds) {
+	print "$k: " . scalar @{$last_sds{$k}} . "\n";
 	my $out_zone="" ;
 	my $sub_zone ;
 	my $new_line ;
 	my @new_zones_lines ;
 	if (!string_in_aray($k)) { 
 	my $sub_origin = $k . '.' . $origin ;
-	open($sub_zone, '>','generated_zones/' . $sub_origin) or die "could not open zone file for w: $!";
+	open($sub_zone, '>','generated_zones/' . $sub_origin . $zone_subfix ) or die "could not open zone file for w: $!";
 
 	print $sub_zone "$header_template" ;
 	print $sub_zone ";;$sub_origin :\n" ;
