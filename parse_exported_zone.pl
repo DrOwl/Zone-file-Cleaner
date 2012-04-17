@@ -26,12 +26,13 @@ my $zonefile = DNS::ZoneParse->new($in_file, $origin);
     
 #I should be using dump instead, but i thorght of this first and kind of liked that i could use a var as a methord
 #So have stuck with it for now
+
 my @records_types = ("a", "cname", "srv", "mx", "ns", "ptr", "txt", "hinfo", "rp", "loc");
 
 # chose which sub domains we want to brake out in to seperate zone files
 # we could probally have this automated eg and sub with more the X names get auto broken out
-# but manualy seems nicer for now. also this should be a Cl option time to bust out getOps long
-my @brakeouts = ("subzone");
+# but manualy seems nicer for now. also this should be a Cl option, time to bust out getOps long
+my @brakeouts = ("subzone1");
 
 
 # start by importing the data from the zone file in to a hash of hashes based on the sub domain

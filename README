@@ -10,3 +10,6 @@ sub zones are created with out NS records...
 
 When  trying to created  a sub zone if the sub zone has a CNAME pointing to it 
 	we can not create it, as you can not have a CNAME as the source of a zone
+
+I have also created extra scripts for diffrent zone types "parse_exported_zone-reverse.pl  parse_exported_zone-sort-by-first.pl "
+Should make this an option instead of being lazzy
