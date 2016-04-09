@@ -6,7 +6,6 @@ use DNS::ZoneParse;
 my $in_file = shift or die usage("zone file not specified") ;
 die usage("File: \'$in_file\' not found") if (! -f $in_file) ;
 
-#my $origin = "kitd.com" ;
 my $origin = shift or die usage("origin not specified") ;
 my $origin_regex = $origin ;
    $origin_regex =~ s/\./\\./g ;
